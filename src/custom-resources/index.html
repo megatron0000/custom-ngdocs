@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dependencyGraphApp">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta content="width=device-width,initial-scale=1" name="viewport"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.js" type="text/javascript">
+        </script>
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            #mynetwork {
+            /*Se eu colocar 80%, o div#buttons fica para baixo*/
+            width: 79%;
+            height: 700px;
+            border: 1px solid lightgray;
+            float:right;
+        }
+        #title {
+            font-family: 'FontAwesome';
+            margin:-5px !important;
+            padding-left: 20px;
+            padding-top: 40px;
+            height: 100px;
+            background-color: #ced8e8;
+        }
+        body {
+            background-color: #e1f0f2;
+        }
+        #buttons {
+            width: 20%;
+            float: left;
+        }
+        </style>
+        <title>
+            Dependency Graph
+        </title>
+    </head>
+    <body ng-controller="GraphBuilderController">
+        <!-- <h2 id="title">
+            Grafo de dependências entre controllers e services
+        </h2> -->
+        <div id="mynetwork">
+        </div>
+        <br/>
+        <div id="buttons">
+            <button ng-click="switchVisibility('type')" style="border-radius: 10px; padding: 10px; background-color: rgb(242,107,245);">
+                Mostrar Types
+            </button>
+            <br/>
+            <button ng-click="switchVisibility('controller')" style="border-radius: 10px; padding: 10px; background-color: #2fe05e;">
+                Mostrar Controllers
+            </button>
+            <br/>
+            <button ng-click="switchVisibility('service')" style="border-radius: 10px; padding: 10px; background-color: #f74a67;">
+                Mostrar Services
+            </button>
+            <button ng-click="switchVisibility('unknown')" style="border-radius: 10px; padding: 10px; background-color: #848484;">
+                Mostrar Desconhecidos
+            </button>
+            <button ng-click="setIsHierarchical()" style="border-radius: 10px; padding: 10px; background-color: white;">
+                Layout hierárquico ?
+            </button>
+        </div>
+        <!-- angular -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js">
+        </script>
+        <script src="scripts/buildGraph.js" type="text/javascript">
+        </script>
+        <script src="scripts/setupDom.js" type="text/javascript">
+        </script>
+        <script type="text/javascript">
+            // Definição do tipo Graph
+            //{
+            //  .nodes [{
+            //      .id
+            //      .name
+            //      .label
+            //      .group=
+            //  }]
+            //  .edges [{
+            //      .from
+            //      .to
+            //  }]
+            //}
+            angular.module("dependencyGraphApp", [])
+            //
+            .controller("GraphBuilderController", ["$scope", "$http", "GraphHolder",
+                function($scope, $http, GraphHolder) {
+
+                    // Definição de função multiuso
+                    function onError(error) {
+                        console.log(error);
+                    }
+
+                    console.log("Inside controller");
+                    // Criar o grafo e cedê-lo a GraphHolder
+                    $http.get("data/docs.json").then(
+                        (response) => {return response.data;}, onError)
+                    .then(setupDom, onError)
+                    .then(GraphHolder.setup, onError);
+
+                    $scope.switchVisibility = (groupName) => {
+                        GraphHolder.switchVisibility(groupName);
+                    };
+
+                    $scope.setIsHierarchical = () => {
+                        GraphHolder.setIsHierarchical();
+                    }
+                }
+
+            ])
+            //
+            .service("GraphHolder", [
+                function() {
+                    this.visObj = null;
+                    this.data = null;
+                    this.container = null;
+                    this.options = null;
+
+                    this.setIsHierarchical = () => {
+                        this.options.layout.hierarchical.enabled = !this.options.layout.hierarchical.enabled;
+                        this.reload();
+                    };
+
+                    this.reload = () => {
+                        this.visObj.destroy();
+                        this.visObj = new vis.Network(this.container, {
+                            nodes: new vis.DataSet(this.data.nodes),
+                            edges: new vis.DataSet(this.data.edges)
+                        }
+                        , this.options);
+                    }
+                    
+                    this.setup = (components) => {
+                        this.container = components.container;
+                        this.data = components.data;
+                        this.options = components.options;
+                        this.visObj = new vis.Network(components.container, {
+                            nodes: new vis.DataSet(this.data.nodes),
+                            edges: new vis.DataSet(this.data.edges)
+                        }
+                        , components.options);
+                    };
+
+                    this.switchVisibility = (groupName) => {
+                        this.options.groups[groupName].hidden = !this.options.groups[groupName].hidden;
+                        // CUIDADO !! this.data.edges é do tipo vis.DataSet
+                        // (observe o return de setupDom)
+                        forEach(this.data.edges, {group: groupName}, (elem) => {
+                            let fromGroupName = find(this.data.nodes, {id: elem.from}).group;
+                            let toGroupName = find(this.data.nodes, {id: elem.to}).group;
+                            if (!this.options.groups[fromGroupName].hidden && !this.options.groups[toGroupName].hidden)
+                                elem.hidden = false;
+                            else
+                                elem.hidden = true;
+                        });
+                        this.reload();
+                    };
+
+                    function forEach(array, filter, callback) {
+                        let filteredArray = [];
+                        // Filtrar o array
+                        for (let i = 0 ; i < array.length; i ++) {
+                            let elem = array[i];
+                            let passed = true;
+                            for (key in filter) {
+                                if (!elem[key])
+                                    throw new Error("A propriedade " + key + " não existe em pelo menos um elemento do array");
+                                if (typeof filter[key] === 'string')
+                                    passed = new RegExp(filter[key]).test(elem[key]);
+                                else
+                                    passed = filter[key] === elem[key];
+                                if(!passed)
+                                    break;
+                            }
+                            if (passed)
+                                filteredArray.push(elem);
+                        }
+                        filteredArray.forEach((elem, index, array) => {
+                            callback(elem, index, array);
+                        });
+                    }
+
+                    function find (array, filter) {
+                        for (let i = 0 ; i < array.length ; i ++) {
+                            let elem = array[i];
+                            let passed = true;
+                            for (key in filter) {
+                                if (!elem[key])
+                                    throw new Error("Pelo menos um elemento do array não possui a propriedade " + key);
+                                if (elem[key] !== filter[key]) {
+                                    passed = false;
+                                    break;
+                                }
+                            }
+                            if (passed)
+                                return elem;
+                        }
+                    }
+                }
+            ]);
+        </script>
+    </body>
+</html>

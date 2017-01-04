@@ -1,0 +1,1808 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"link",
+				"link"
+			],
+			[
+				"padding-",
+				"padding-right"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"re",
+				"resolve\t? "
+			],
+			[
+				"vitorCs",
+				"vitorCustomDependencyHtml〔function〕"
+			],
+			[
+				"mol",
+				"moduleName"
+			],
+			[
+				"propert",
+				"properties"
+			],
+			[
+				"selec",
+				"selectedAssessment"
+			],
+			[
+				"conver",
+				"convertUrlToAbsolute"
+			],
+			[
+				"lengh",
+				"length-1"
+			],
+			[
+				"espanhol",
+				"Espanhol"
+			],
+			[
+				"usera",
+				"userAnswer\t(services.js)"
+			],
+			[
+				"Fact",
+				"AnswerRecordFactory"
+			],
+			[
+				"R",
+				"REQUEST_METHOD"
+			],
+			[
+				"dynam",
+				"dynamic-model\t(index.html)"
+			],
+			[
+				"background-gray-lig",
+				"background-gray-light\t(backgrounds.css)"
+			],
+			[
+				"flex-grow",
+				"flex-grow-2\t(flexBox.css)"
+			],
+			[
+				"possi",
+				"possibleAnswers\t(answerSheets.json)"
+			],
+			[
+				"resta",
+				"restanteLiberado"
+			],
+			[
+				"funcao",
+				"funcao"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "templates/index.tmpl",
+			"settings":
+			{
+				"buffer_size": 12503,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "customResources/index.html",
+			"settings":
+			{
+				"buffer_size": 2520,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/tasks/grunt-ngdocs.js",
+			"settings":
+			{
+				"buffer_size": 11990,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ngdoc.js",
+			"settings":
+			{
+				"buffer_size": 56951,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "reader.js",
+			"settings":
+			{
+				"buffer_size": 1628,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/css/docs.css",
+			"settings":
+			{
+				"buffer_size": 5003,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/css/font-awesome.css",
+			"settings":
+			{
+				"buffer_size": 23644,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 357.0,
+		"last_filter": "m",
+		"selected_items":
+		[
+			[
+				"m",
+				"Minify::Minify File"
+			],
+			[
+				"min",
+				"Minify::Minify File"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"git log",
+				"Git: Log All"
+			],
+			[
+				"git  co",
+				"Git: Amend Commit"
+			],
+			[
+				"git a",
+				"Git: Add All"
+			],
+			[
+				"git s",
+				"Git: Status"
+			],
+			[
+				"git lo",
+				"Git: Log All"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"gitlog",
+				"Git: Log All"
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git diff",
+				"Git: Diff All Files"
+			],
+			[
+				"li",
+				"Package Control: List Packages"
+			],
+			[
+				"git gui",
+				"Git: Gui"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
+			[
+				"git grpa",
+				"Git: Graph All"
+			],
+			[
+				"php",
+				"SublimeREPL: PHP"
+			],
+			[
+				"repl p",
+				"SublimeREPL: PHP"
+			],
+			[
+				"lis",
+				"Package Control: List Packages"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"format jav",
+				"Eclipse: Format Java"
+			],
+			[
+				"Java",
+				"Eclipse: Format Java"
+			],
+			[
+				"javatar",
+				"Preferences: Javatar Key Bindings – Default"
+			],
+			[
+				"build",
+				"Build: Cancel"
+			],
+			[
+				"dox",
+				"Set Syntax: Doxygen"
+			],
+			[
+				"doxy",
+				"DoxyDoxygen: Build Documentation"
+			],
+			[
+				"int",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"update",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"forma",
+				"CodeFormatter: Format Code"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 542.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"C:\\\\",
+			"c:\\",
+			"c:",
+			"jsdoc",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/customResources",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/tasks"
+	],
+	"file_history":
+	[
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/css/prettify.css",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/package.json",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/tasks/grunt-ngdocs.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/js/angular-bootstrap.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/ngdoc.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/vitorCustomLogger.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/js/docs.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/index.tmpl",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/reader.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/js/angular.min.js",
+		"/C/Users/vitor.ACER/AppData/Roaming/Sublime Text 3/Packages/User/auto_save.sublime-settings",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/spec/ngdocSpec.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/js/google-code-prettify.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/node_modules/treet/treet.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/spec/domSpec.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/example.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/dom.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/CHANGELOG.md",
+		"/D/Programming/projetos/site/gi/index.html",
+		"/D/Programming/projetos/site/gi/modules/dynamic-states/app.js",
+		"/D/Programming/projetos/site/gi/views/assessments.html",
+		"/D/Programming/projetos/site/gi/database/states.json",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/controllers.js",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/services.js",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/app.js",
+		"/D/Programming/projetos/site/gi/database/assessmentData/answerSheets.min.json",
+		"/D/Programming/projetos/site/gi/database/assessmentData/answerSheets.json",
+		"/D/Programming/projetos/site/gi/database/assessmentData/userAnswers.json",
+		"/D/Programming/projetos/site/gi/modules/main/app.js",
+		"/D/Programming/projetos/site/gi/database/states.min.json",
+		"/D/Programming/projetos/site/gi/gruntfile.js",
+		"/D/Programming/projetos/site/gi/views/machineLearning.html",
+		"/D/Games/Minecraft/Bukkit Server (Premade) 1.9.4/plugins/Bau_de_Laplace/data.yml",
+		"/G/ReadyBoost.sfcache",
+		"/D/Programming/projetos/site/gi/database/post.php",
+		"/D/Programming/projetos/site/gi/views/userPerformance.html",
+		"/D/Programming/projetos/site/gi/views/userPerformanceTEST.html",
+		"/D/Programming/projetos/site/gi/docs/partials/api/assessmentAnalysis.service.AssessmentFactory.html",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/css/docs.css",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/src/templates/js/marked.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdoc/tasks/grunt-ngdoc.js",
+		"/D/Programming/projetos/site/gi/node_modules/grunt-ngdoc/src/ngdoc.js",
+		"/C/Users/vitor.ACER/AppData/Local/Microsoft/Windows/INetCache/IE/C13OW7PQ/PIWJ4PHY.json",
+		"/D/Programming/projetos/site/gi/scripts/generators.html",
+		"/D/Programming/projetos/site/gi/markerHub/marked/test/original/markdown_documentation_syntax.html",
+		"/D/Programming/projetos/site/gi/markerHub/marked/test/original/markdown_documentation_syntax.text",
+		"/D/Programming/projetos/site/gi/markerHub/marked/test/original/markdown_documentation_basics.html",
+		"/D/Programming/projetos/site/gi/markerHub/marked/test/original/markdown_documentation_basics.text",
+		"/D/Programming/projetos/site/gi/markerHub/marked/test/index.js",
+		"/D/Programming/projetos/site/gi/docs/partials/api/assessmentAnalysis.html",
+		"/D/Programming/projetos/site/gi/docs/partials/api/RawAssessmentList.html",
+		"/D/Programming/projetos/site/gi/ml/questoesProva1.mat",
+		"/D/Programming/projetos/site/gi/ml/userCoFi.m",
+		"/D/Programming/projetos/site/gi/ml/cofiCostFunc.m",
+		"/D/Programming/projetos/site/gi/ml/pca.m",
+		"/D/Programming/projetos/site/gi/ml/linearRegCostFunction.m",
+		"/D/Programming/projetos/site/gi/ml/userPCA.m",
+		"/D/Programming/projetos/site/gi/ml/questoesProva1Backup.mat",
+		"/D/Programming/projetos/site/gi/ml/sigmoid.m",
+		"/D/Programming/projetos/site/gi/ml/questoesProva1.json",
+		"/D/Programming/projetos/site/gi/ml/fmincg.m",
+		"/D/Programming/projetos/site/gi/ml/userAndQuestionIRT.m",
+		"/D/Programming/projetos/site/gi/ml/userGD.m",
+		"/D/Programming/projetos/site/gi/views/sendUserAnswers.html",
+		"/C/Users/vitor/Google Drive/AAA estudo/Machine Learning/machine-learning-ex7/ex7/pca.m",
+		"/D/Programming/projetos/site/gi/views/groupPerformance.html",
+		"/C/Users/vitor.ACER/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/Programming/projetos/site/gi/modules/highcharts-ng/app.js",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/out/controllers.js.html",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/out/services.js.html",
+		"/D/Programming/projetos/site/gi/mol.html",
+		"/D/Programming/projetos/site/gi/views/userList.html",
+		"/D/Programming/projetos/site/gi/styles/flexBox.css",
+		"/D/Programming/projetos/site/gi/views/assessment.html",
+		"/D/Programming/projetos/site/sftp-config.json",
+		"/D/Programming/projetos/site/gi/styles/rightOrWrongAnswers.css",
+		"/D/Programming/projetos/site/gi/views/checkUserPerformance.html",
+		"/D/Programming/projetos/conFusion/ionic/conFusion/www/README.md",
+		"/D/Programming/projetos/site/gi/styles/backgrounds.css",
+		"/D/Programming/projetos/site/gi/styles/activeState.css",
+		"/D/Programming/projetos/site/gi/modules/dynamic-model/app.js",
+		"/D/Programming/projetos/site/gi/modules/dynamic-models/app.js",
+		"/C/Users/vitor.ACER/AppData/Roaming/Sublime Text 3/Packages/auto-save/auto_save.sublime-settings",
+		"/C/Users/vitor.ACER/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/D/Programming/projetos/site/gi/modules/main/controllers.js",
+		"/D/Programming/projetos/site/gi/database/assessmentData",
+		"/D/Programming/projetos/site/gi/modules/main/services.js",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/database/firstAssessment/answerSheet/firstYear.json",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/database/firstAssessment/answerSheet/secondYear.json",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/database/firstAssessment/secondYear.json",
+		"/D/Programming/projetos/site/gi/modules/assessmentAnalysis/database/firstAssessment/firstYear",
+		"/C/Users/vitor.ACER/AppData/Roaming/Sublime Text 3/Packages/CodeFormatter/CodeFormatter.sublime-settings",
+		"/D/Programming/projetos/site/gi/modules/main/controllers/controllers.js",
+		"/D/Programming/projetos/site/gi/modules/exerciseList/app.js",
+		"/D/Programming/projetos/site/gi/modules/exerciseList/controllers/controllers.js",
+		"/D/Programming/projetos/site/gi/modules/exerciseList/services/factories.js",
+		"/D/Programming/projetos/site/gi/scripts/googleAnalytics.js",
+		"/D/Programming/projetos/site/rosane/index.html",
+		"/D/Programming/projetos/site/rosane/app/scripts/app.js",
+		"/D/Programming/projetos/openshiftsite/baudelaplace/app.js",
+		"/D/Programming/projetos/openshiftsite/baudelaplace2/baudelaplace2/app.js",
+		"/D/Programming/projetos/openshiftsite/baudelaplace/package.json",
+		"/D/Programming/projetos/openshiftsite/baudelaplace2/baudelaplace2/package.json",
+		"/D/Programming/projetos/openshiftsite/baudelaplace/start.js",
+		"/D/Programming/projetos/site/bau/ese/graficos.html",
+		"/D/Programming/projetos/openshiftsite/baudelaplace2/baudelaplace2/start.js",
+		"/D/Programming/projetos/openshiftsite/app.js",
+		"/D/Programming/projetos/openshiftsite/start.js",
+		"/D/Programming/projetos/site/bau/algebraAnimada/script/usuarios.txt",
+		"/D/Programming/projetos/site/bau/ese/PesquisaApp.js",
+		"/D/Programming/projetos/site/bau/ese/usuarios.txt",
+		"/D/Programming/projetos/site/bau/algebraAnimada/script/LaraApp.js",
+		"/D/Programming/projetos/site/bau/algebraAnimada/index.html",
+		"/D/Programming/projetos/site/wsiteCSS.css",
+		"/D/Programming/projetos/openshiftsite/package.json",
+		"/D/Programming/projetos/openshiftsite/server/config/local.env.js",
+		"/D/Programming/projetos/openshiftsite/oldpackage.json",
+		"/D/Programming/projetos/site/bau/algebraAnimada/script/guardarUsuarios.php",
+		"/D/Programming/projetos/openshiftsite/.yo-rc.json",
+		"/D/Programming/projetos/openshiftsite/bower.json",
+		"/D/Programming/projetos/openshiftsite/static/index.html",
+		"/D/Programming/projetos/openshiftsite/.gitignore",
+		"/D/Programming/projetos/site/plugins/Treant/Treant.js",
+		"/D/Programming/projetos/site/db.json",
+		"/D/Programming/projetos/site/Andre/index.html",
+		"/D/Programming/projetos/openshiftsite/.git/description",
+		"/D/Programming/projetos/openshiftsite/.git/config",
+		"/D/Programming/projetos/openshiftsite/.git/HEAD"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 157.0,
+		"where_history":
+		[
+			"D:\\Programming\\projetos\\site\\gi\\node_modules\\grunt-ngdocs",
+			"grunt-ngdocs",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"html_usage_parame",
+			"\"param",
+			"\"param\"",
+			"param",
+			"flush",
+			"parse",
+			"html_usage_",
+			"method_pro",
+			"JSON.string",
+			"custom",
+			"data",
+			"__dirname",
+			"customRe",
+			"sections",
+			"scripts",
+			"styles",
+			"data",
+			"data.",
+			"templates",
+			"\n        var sep = prefix ? separator : '';\n        (this.param || []).forEach(function (param, i) {\n            if (!(skipFirst && i == 0)) {\n                if (param.isProperty) {\n                    return;\n                }\n                if (param.optional) {\n                    dom.text('[' + sep + param.name + ']');\n                } else {\n                    dom.text(sep + param.name);\n                }\n            }\n            sep = separator;\n        });",
+			"options",
+			"parts",
+			".html",
+			"notice",
+			"notice(",
+			"flush()",
+			"Dependen",
+			"method_pro",
+			".html",
+			"if (atName",
+			"new Doc",
+			"Doc",
+			"Dom",
+			"ngdoc",
+			"requires",
+			"method_prop",
+			"this",
+			"Doc",
+			"dom",
+			"this",
+			"vitor",
+			"this",
+			"app",
+			"Example",
+			"console",
+			"\\.process",
+			".process",
+			"\\.process",
+			".process",
+			"process",
+			"processJsFile",
+			"states",
+			"states.json",
+			"answerSheets",
+			".config(function ($compileProvider) {\n        $compileProvider.preAssignBindingsEnabled(true);\n    ",
+			"desculpa",
+			"\"[0-9]+\"",
+			"Laura",
+			"\"[0-9]+\"",
+			"\"[0-9+]\"",
+			"\"[0-9]+\"",
+			"\"[0-9+]\"",
+			"Logo, logo",
+			"dradt",
+			"machine",
+			"Se falhar,",
+			"Se falhar, ",
+			"code",
+			".code",
+			"code {",
+			"code",
+			"coe",
+			"`",
+			"``",
+			".match",
+			"type",
+			"isDocu",
+			"isDoc",
+			"Dados so\n",
+			"Dados sobre",
+			"method_properti",
+			"method_properi",
+			"properties",
+			"processParams",
+			"properties",
+			"property",
+			"property_",
+			"properties",
+			"properties_",
+			"properties",
+			"isDocumen",
+			"Array<",
+			"RawAssessment",
+			"List",
+			"isDocum",
+			"isD",
+			"RawAsses",
+			"method_proper",
+			"MODULE",
+			"module",
+			"MODULE",
+			"property",
+			"others",
+			"propert",
+			"others",
+			"method",
+			"service",
+			"controllers",
+			"method",
+			"isDocumentedType",
+			"html_usage_param",
+			"format",
+			"controllers",
+			".controllers",
+			"assessmentAnalysis.object:RawAssessmentList",
+			"ngdocs",
+			"console.log(",
+			"html()",
+			"convertUrl",
+			".match",
+			"[^:]",
+			"html_usage_parameters",
+			"html_usage_parametes",
+			"Methods",
+			"property",
+			"module",
+			"module.*\\.controllers",
+			"other"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"UserStatisticsFactory",
+			"analysisBySubject",
+			"UserListController",
+			"getAssessmentList",
+			"()",
+			"`\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "templates/index.tmpl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12503,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5373,
+								5373
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										5373,
+										5374
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										5366,
+										5367
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"side_bar_folders_auto_load_folder": 1,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1529.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "customResources/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2520,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								560,
+								560
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										560,
+										561
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										551,
+										552
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"side_bar_folders_auto_load_folder": 1,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1167.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/Programming/projetos/site/gi/node_modules/grunt-ngdocs/tasks/grunt-ngdocs.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3916,
+								3916
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3916,
+										3917
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										3904,
+										3905
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"side_bar_folders_auto_load_folder": 1,
+							"synced": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2023.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "ngdoc.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 56951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								53154,
+								53154
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										53655,
+										53656
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										53153,
+										53154
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"side_bar_folders_auto_load_folder": 1,
+							"synced": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 35252.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "reader.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1628,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								515,
+								515
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										524,
+										525
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										478,
+										479
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"side_bar_folders_auto_load_folder": 1,
+							"synced": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "templates/css/docs.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5003,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"side_bar_folders_auto_load_folder": 1,
+							"synced": false,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 486.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "templates/css/font-awesome.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 23644,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"side_bar_folders_auto_load_folder": 1,
+							"synced": false,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 55.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 98.0
+	},
+	"output.sftp":
+	{
+		"height": 177.0
+	},
+	"pinned_build_system": "",
+	"project": "grunt-ngdocs.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"read",
+				"src\\reader.js"
+			],
+			[
+				"grunt-ngdocs",
+				"node_modules\\grunt-ngdoc\\tasks\\grunt-ngdoc.js"
+			],
+			[
+				"ngdo",
+				"node_modules\\grunt-ngdoc\\src\\ngdoc.js"
+			],
+			[
+				"grunt",
+				"gruntfile.js"
+			],
+			[
+				"states",
+				"database\\states.json"
+			],
+			[
+				"serv",
+				"modules\\assessmentAnalysis\\services.js"
+			],
+			[
+				"con",
+				"modules\\assessmentAnalysis\\controllers.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"fel",
+				"styles\\flexBox.css"
+			],
+			[
+				"gene",
+				"scripts\\generators.html"
+			],
+			[
+				"usel",
+				"views\\userList.html"
+			],
+			[
+				"back",
+				"styles\\backgrounds.css"
+			],
+			[
+				"fle",
+				"styles\\flexBox.css"
+			],
+			[
+				"ba",
+				"styles\\backgrounds.css"
+			],
+			[
+				"fe",
+				"styles\\flexBox.css"
+			],
+			[
+				"fl",
+				"styles\\flexBox.css"
+			],
+			[
+				"asses",
+				"views\\assessment.html"
+			],
+			[
+				"wsite",
+				"site\\wsiteCSS.css"
+			],
+			[
+				"treant",
+				"plugins\\Treant\\Treant.js"
+			],
+			[
+				"trean",
+				"site\\plugins\\Treant\\Treant.js"
+			],
+			[
+				"p5.",
+				"site\\plugins\\p5.js"
+			],
+			[
+				"treant.js",
+				"site\\plugins\\Treant\\Treant.js"
+			],
+			[
+				"fac",
+				"pic\\correcaoLista1\\module\\factories.js"
+			],
+			[
+				"app",
+				"pic\\correcaoLista1\\module\\app.js"
+			],
+			[
+				"plugins/",
+				"site\\plugins\\Treant\\Treant.js"
+			],
+			[
+				"usuarios",
+				"site\\bau\\mediatrizViraCirculo\\scripts\\usuarios.txt"
+			],
+			[
+				"confusion/",
+				"site\\conFusion\\app\\scripts\\app.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "gi",
+		"selected_items":
+		[
+			[
+				"gi",
+				"D:\\Programming\\projetos\\site\\gi\\gi.sublime-project"
+			],
+			[
+				"grun",
+				"D:\\Programming\\projetos\\site\\gi\\node_modules\\grunt-ngdocs\\src\\grunt-ngdocs.sublime-project"
+			],
+			[
+				"site",
+				"D:\\Programming\\projetos\\_site.sublime-project"
+			],
+			[
+				"expre",
+				"D:\\Programming\\projetos\\examples\\nodeExamples\\learning\\expressExample.sublime-project"
+			],
+			[
+				"conf",
+				"D:\\Programming\\projetos\\_conFusion.sublime-project"
+			],
+			[
+				"ex",
+				"D:\\Programming\\projetos\\examples\\nodeExamples\\learning\\expressExample.sublime-project"
+			],
+			[
+				"exp",
+				"D:\\Programming\\projetos\\examples\\nodeExamples\\learning\\expressExample.sublime-project"
+			],
+			[
+				"conF",
+				"D:\\Programming\\projetos\\_conFusion.sublime-project"
+			],
+			[
+				"provas",
+				"C:\\Users\\vitor.ACER\\Documents\\Wondershare PDF Converter Pro\\provasGI\\provasGI.sublime-project"
+			],
+			[
+				"pro",
+				"C:\\Users\\vitor.ACER\\Documents\\Wondershare PDF Converter Pro\\provasGI\\provasGI.sublime-project"
+			],
+			[
+				"provass",
+				"C:\\Users\\vitor.ACER\\Documents\\Wondershare PDF Converter Pro\\provasGI\\provasGI.sublime-project"
+			],
+			[
+				"php",
+				"D:\\Programming\\projetos\\openshiftsite\\openshiftsite.sublime-workspace"
+			],
+			[
+				"pic",
+				"D:\\Programming\\projetos\\_pic.sublime-project"
+			],
+			[
+				"si",
+				"D:\\Programming\\projetos\\site.project.sublime-workspace"
+			],
+			[
+				"confu",
+				"D:\\Programming\\projetos\\_conFusion.sublime-project"
+			],
+			[
+				"bio",
+				"D:\\Programming\\projetos\\site\\bioquimica\\bioquimica.sublime-project"
+			],
+			[
+				"bi",
+				"D:\\Programming\\projetos\\site\\bioquimica\\bioquimica.sublime-project"
+			],
+			[
+				"bioq",
+				"D:\\Programming\\projetos\\site\\bioquimica\\bioquimica.sublime-project"
+			],
+			[
+				"bio\t",
+				"D:\\Programming\\projetos\\site\\Bioquímica\\Bioquimica.sublime-workspace"
+			],
+			[
+				"con",
+				"D:\\Programming\\projetos\\_conFusion.sublime-project"
+			],
+			[
+				"",
+				"D:\\Programming\\projetos\\_minecraft.sublime-project"
+			],
+			[
+				"_m",
+				"D:\\Programming\\projetos\\_minecraft.sublime-project"
+			],
+			[
+				"_co",
+				"D:\\Programming\\projetos\\_conFusion.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 289.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
