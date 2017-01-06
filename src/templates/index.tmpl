@@ -377,7 +377,8 @@
                         </div>
                     </div>-->
 
-                    <div ng-hide="loading" ng-include src="currentPage.partialUrl" onload="afterPartialLoaded()" autoscroll class="content slide-reveal"></div>
+                    <!-- This div had class slide-reveal as well. Removed it to avoid animation -->
+                    <div ng-hide="loading" ng-include src="currentPage.partialUrl" onload="afterPartialLoaded()" autoscroll class="content"></div>
                     <% if (discussions) { %>
                         <div id="disqus" class="disqus">
                             <h2>Discussion</h2>

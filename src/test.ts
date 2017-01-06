@@ -1,3 +1,6 @@
+/**
+ * [[include:index.d.ts]]
+ */ 
 import * as console from 'console';
 // import fs = require('fs');
 // fs.writeFileSync("test.txt", "haha");

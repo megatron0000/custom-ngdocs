@@ -1,6 +1,8 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+    grunt.loadNpmTasks('grunt-typedoc');
+
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-conventional-changelog');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -12,6 +14,18 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        typedoc: {
+            build: {
+                options: {
+                    module: 'commonjs',
+                    out: './docs',
+                    name: 'my-project',
+                    target: 'es6',
+                    includeDeclarations: true
+                },
+                src: ['./src/**/*']
+            }
+        },
         changelog: {
             options: {
                 dest: 'CHANGELOG.md'
@@ -44,23 +58,23 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true,
                     hostname: "localhost",
-                    base: './docs-about-docs',
+                    base: './docs/angular',
                     port: 8000,
                     open: false
                 }
             }
         },
-        clean: ['docs-about-docs'],
+        clean: ['docs/angular'],
         ngdocs: {
             options: {
                 //scripts: ['angular.js', '../src.js'],
                 html5Mode: false,
-                dest: './docs-about-docs',
+                dest: './docs/angular',
                 styles: ['src/custom-resources/css/custom-font.css', 'node_modules/custom-fonts/open-sans/OpenSans-Regular.ttf'],
                 startPage: "/",
                 title: 'Metadocs',
                 inlinePartials: false, //default
-                bestMatch: true
+                bestMatch: false
                     // scripts: ['modules/**/*.js'] No wildcards -_- just moves to docs/grunt-scripts
                     // image: './img/logo.png'   just moves to docs/grunt-styles
                     // navContent = './some/path/to/template'

@@ -198,7 +198,7 @@ docsApp.directive.sourceEdit = function(getEmbeddedTemplate) {
  * @requires $document
  * @description
  * Searches for all "script" tags in current document, then uses a HashMap ``url`` for the following:
- *  - Take a script like: < script src="anything/index-343.min.js" >< script >
+ *  - Take a script like: < script src=" anything /index-343.min.js" >< script >
  *  - It is stored in the HashMap like: ``url["index.js"]=>index-343.min.js``
  * 
  * That means the key strips away the ID and the ".min" subextension
@@ -397,13 +397,31 @@ docsApp.serviceFactory.sections = function serviceFactory() {
  */
 docsApp.controller.DocsController = function($scope, $location, $window, sections) {
     /**
-     * @ngdoc property
-     * @private
-     * @propertyOf docsApp.controller:DocsController
-     * @type RegExp
-     * @name docsApp.controller:DocsController#INDEX_PATH
+     * @ngdoc interface
+     * @name docsApp.controller:UrlMatcher
      * @description
-     * ## TODO description
+     * Private variables from {@link docsApp.controller:DocsController DocsController}, used to detect
+     * which angular object a certain page belongs to (controller, service, etc)
+     * 
+     * These objects are: (note: < anyb > means anything except dots)
+     *  
+     *  |                               |                                                              |
+     *  | ----------------------------- | ------------------------------------------------------------ |
+     *  |   ``INDEX_PATH``:             | **`` / or /index< anyb >.html ``**                           |
+     *  |   ``GLOBALS``:                | **`` angular.< anyb > ``**                                   |
+     *  |   ``MODULE``:                 | **`` < anyb > ``**                                           |
+     *  |   ``MODULE_MOCK``:            | **`` angular.mock.< anyb > ``**                              |
+     *  |   ``MODULE_CONTROLLER``:      | **`` < anyb >.controller[s]:< anyb > ``**                    |
+     *  |   ``MODULE_DIRECTIVE``:       | **`` < anyb >.directive[s]:< anyb > ``**                     |
+     *  |   ``MODULE_DIRECTIVE_INPUT``: | **`` < anyb >.directive[s]:input.< anyb > ``**               |
+     *  |   ``MODULE_FILTER``:          | **`` < anyb >.filter[s]:< anyb > ``**                        |
+     *  |   ``MODULE_CUSTOM``:          | **`` < anyb >.< anyb >:< anyb > ``**                         |
+     *  |   ``MODULE_SERVICE``:         | **`` < anyb >.< anyb >[Provider] ``**                        |
+     *  |   ``MODULE_CONSTANT``:        | **`` < anyb >.constant[s]:< anyb > ``**                      |
+     *  |   ``MODULE_OBJECT``:          | **`` < anyb >.object[s]:< anyb > ``**                        |
+     *  |   ``MODULE_INTERFACE``:       | **`` < anyb >.interface[s]:< anyb > ``**                     |
+     *  |   ``MODULE_TYPE``:            | **`` < anyb >.< anything >.<uppercase letter>< anyb > ``**   |
+     * 
      */
     var INDEX_PATH = /^(\/|\/index[^\.]*.html)$/,
         GLOBALS = /^angular\.([^\.]+)$/,
@@ -425,6 +443,18 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
      Publish methods
      ***********************************/
 
+    /**
+     * @ngdoc method
+     * @methodOf docsApp.controller:DocsController
+     * @public
+     * @name docsApp.controller:DocsController#$scope.navClass
+     * @param {Object} page1 Page to verify if is focused on the sidebar, or currently being viewed
+     * @param {Object} page2 Another page, to be treated as substitute to the first
+     * @returns {Object} HashMap containing keys representing CSS classes and boolean values 
+     * representing if the class should be applied or not
+     * @description
+     * It is a JS way of applying "hover" and "selected" classes to nav items
+     */
     $scope.navClass = function(page1, page2) {
         return {
             first: this.$first,
@@ -436,6 +466,16 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
         };
     };
 
+    /**
+     * @ngdoc method
+     * @public
+     * @methodOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#isActivePath
+     * @param {string} url Indentifier of a section (like "api") for verifying if it is contained in the active route
+     * @return {boolean} true if provided section is active. false otherwise
+     * @description
+     * It is a JS way of applying "selected" CSS classes to the section links at the top of the page
+     */
     $scope.isActivePath = function(url) {
         if (url.charAt(0) == '#') {
             url = url.substring(1, url.length);
@@ -443,11 +483,15 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
         return $location.path().indexOf(url) > -1;
     };
 
+    /**
+     * 
+     */
     $scope.submitForm = function() {
         if ($scope.bestMatch) {
             var url = $scope.bestMatch.page.url;
             $location.path(NG_DOCS.html5Mode ? url : url.substring(1));
         }
+        console.log("submited");
     };
 
     $scope.afterPartialLoaded = function() {
