@@ -470,7 +470,7 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
      * @ngdoc method
      * @public
      * @methodOf docsApp.controller:DocsController
-     * @name docsApp.controller:DocsController#isActivePath
+     * @name docsApp.controller:DocsController#$scope.isActivePath
      * @param {string} url Indentifier of a section (like "api") for verifying if it is contained in the active route
      * @return {boolean} true if provided section is active. false otherwise
      * @description
@@ -484,16 +484,33 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
     };
 
     /**
-     * 
+     * @ngdoc method
+     * @public
+     * @methodOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#$scope.submitForm
+     * @return {void} Returns nothing
+     * @description
+     * When user searches for a content using the form, then presses enter, this method
+     * takes him/her to the bestMatch page
      */
     $scope.submitForm = function() {
         if ($scope.bestMatch) {
             var url = $scope.bestMatch.page.url;
             $location.path(NG_DOCS.html5Mode ? url : url.substring(1));
         }
-        console.log("submited");
     };
 
+    /**
+     * @ngdoc method
+     * @public
+     * @methodOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#$scope.afterPartialLoaded
+     * @return {void} Returns nothing
+     * @description
+     * After page has been loaded (called by onload attribute on page container div),
+     * updates document title, inserts google analytics for the page (if it was set in options by user)
+     * and loads "Disqus" for the page (if it was set in options by user)
+     */
     $scope.afterPartialLoaded = function() {
         var currentPageId = $location.path();
         $scope.partialTitle = $scope.currentPage.shortName;
@@ -506,10 +523,22 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
      Watches
      ***********************************/
 
+    /**
+     * @ngdoc property
+     * @public
+     * @propertyOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#$scope.sections
+     * @type KeyValuePairs
+     * @description
+     * HashMap in which a key is the name of a section (like "api" or "#/api", if not in html5Mode) and the value associated
+     * with that key is the section title (like the default "API documentation")
+     */
     $scope.sections = {};
     angular.forEach(NG_DOCS.sections, function(section, url) {
         $scope.sections[(NG_DOCS.html5Mode ? '' : '#/') + url] = section;
     });
+
+
     $scope.$watch(function docsPathWatch() {
         return $location.path();
     }, function docsPathWatchAction(path) {
@@ -522,6 +551,22 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
             return;
         }
 
+        /**
+         * @ngdoc property
+         * @public
+         * @propertyOf docsApp.controller:DocsController
+         * @name docsApp.controller:DocsController#$scope.currentPage
+         * @type KeyValuePairs
+         * @description
+         * Contains resumed information about the page. Namely:
+         *  - ``section``: something like "api"
+         *  - ``id``: something like "moduleName.type:typeName"
+         *  - ``shortName``: Following above example, this would be "typeName"
+         *  - ``type``: Following above exaple, this would be "type"
+         *  - ``moduleName``: Following above example, this would be ``moduleName``
+         *  - ``shortDescription``: First words of the page's description
+         *  - ``keywords``: Well, keywords extracted previously from the page's information
+         */
         $scope.currentPage = page = sections.getPage(sectionId, partialId);
 
         if (!$scope.currentPage) {
