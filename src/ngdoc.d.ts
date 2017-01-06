@@ -260,7 +260,7 @@ declare namespace ngdoc {
         convertUrlToAbsolute(): string;
         /**
          * Executes the following operators on the text:
-         *  - Process examples (like <example>blabla</example>)
+         *  - Process examples (like <example>blabla</example>). For details, check "documentation of grunt-ngdocs"
          *  - Puts \n inside empty div (if there are empty divs)
          *  - Process all {@link blabla bla}, converting relative to absolute urls (collects links in this.links)
          *  - If not full url, pushes to this.links (internal links, therefore)

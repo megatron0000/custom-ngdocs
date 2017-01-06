@@ -203,7 +203,7 @@ module.exports = function(grunt) {
             grunt.file.copy(absPath, path.resolve(options.dest, 'custom-resources', subDir || "./", filename));
         });
         // Write metadata object too (grunt.file.write(file, content))
-        grunt.file.write(path.resolve(options.dest, 'custom-resources', 'data', 'metadata.json'), JSON.stringify(ngdoc.metadata(reader.docs), 2));
+        grunt.file.write(path.resolve(options.dest, 'custom-resources', 'data', 'metadata.json'), JSON.stringify(reader.docs, null, 2));
 
 
         /**
@@ -240,7 +240,7 @@ module.exports = function(grunt) {
             pkg = grunt.file.readJSON('package.json');
         } catch (e) {
             // console.log(e);
-        };
+        }
         return pkg ||  {};
     }
 

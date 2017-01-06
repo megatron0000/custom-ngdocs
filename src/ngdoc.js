@@ -215,20 +215,43 @@ Doc.prototype = {
     markdown: function(text) {
         if (!text) return text;
 
-        var self = this,
-            IS_URL = /^(https?:\/\/|ftps?:\/\/|mailto:|\.|\/)/,
-            IS_ANGULAR = /^(api\/)?(angular|ng|AUTO)\./,
-            IS_HASH = /^#/,
-            parts = trim(text).split(/(<pre.*?>[\s\S]*?<\/pre>|<doc:example(\S*).*?>[\s\S]*?<\/doc:example>|<example[^>]*>[\s\S]*?<\/example>)/),
-            seq = 0,
-            placeholderMap = {};
+        var self = this;
+        var IS_URL = /^(https?:\/\/|ftps?:\/\/|mailto:|\.|\/)/;
+        var IS_ANGULAR = /^(api\/)?(angular|ng|AUTO)\./;
+        var IS_HASH = /^#/;
+        /**
+         * Splits by things of the likes of: "<pre>...</pre> , <doc:example>...</doc:example> , <example>...</example>"
+         */
+        var parts = trim(text).split(/(<pre.*?>[\s\S]*?<\/pre>|<doc:example(\S*).*?>[\s\S]*?<\/doc:example>|<example[^>]*>[\s\S]*?<\/example>)/);
+        /**
+         * seq is used to identify each match above (see variable "parts") with a unique integer
+         */
+        var seq = 0;
+        /**
+         * Each match of "parts" will be assigned a "seq" and its content will
+         * be stored as a key=>value pair here.
+         * Something like : REPLACEME7 => "some possibly long, multiline text"
+         */
+        var placeholderMap = {};
 
+        /**
+         * Creates a key-value pair inside "placeholderMap" (local variable, see above),
+         * of the form " REPLACEME1: 'some long text' "
+         * and returns the id of the key-value pair (in my example, the id is REPLACEME1)
+         */
         function placeholder(text) {
             var id = 'REPLACEME' + (seq++);
             placeholderMap[id] = text;
             return id;
         }
 
+        /**
+         * Given a text, searches for a scope delimited
+         * by <docs tag="tag"> ... </docs>
+         * and returns the content inside
+         * 
+         * If cannot find such a scope, returns empty string
+         */
         function extractInlineDocCode(text, tag) {
             if (tag == 'all') {
                 //use a greedy operator to match the last </docs> tag
@@ -241,94 +264,168 @@ Doc.prototype = {
             return matches && matches.length > 1 ? matches[1] : "";
         }
 
+        /**
+         * Process each <pre>...</pre> , or <doc:example>...</doc:example> , or <example>...</example>
+         */
         parts.forEach(function(text, i) {
+            /**
+             * Eight "replaces" below. Each one does:
+             *  1: <example module="module_name" deps="dep1.js dep2.js" animations="true">...</example>
+             *      deps may be css file. They seem to not appear anywhere
+             *      Inside these <example>, there will be <file name="...js|css|html">content</file>,
+             *      or <file src="path/with/userGruntfile/root"></file>
+             *      which will be automatically loaded onto plunker for editing
+             *  2: Top-level <file src="some/inline_doc_file" tag="customTag"></file>,
+             *      that is, a reference to an INLINE DOC file, which will be inserted in place of 
+             *      (entirely or just the specified tag) the original "<file..." statement
+             *  3: Top-level <doc:example module="someName">...</doc:example>. Their content must be
+             *      "<doc:source>Normal HTML page, which loads scripts, styles, etc.</doc:source>
+             *      <doc:scenario>Scenario description</doc:scenario>"
+             *      All scripts and styles inside <doc:source> will be instantiated as independent file,
+             *      so will happen with <doc:scenario>. The <doc:source>, per se, will become "index.html"
+             *  4: <pre>...</pre> will acquire "prettyprint linenums" css classes, to be displayed like source
+             *      code (will be escaped, obviously).
+             *  5: All empty <div> in source code will gain a "\n" inside
+             *  6: All @links have their links converted to absolute, if necessary (<a> elements are created)
+             *  7: All @type are converted to <a>
+             *  8: All @installModule are replace by helper text (things like: "You can get it here...");
+             *      This is only for angular modules (packaged by angularJS, I mean)
+             */
             parts[i] = (text || '').
+                /**
+                 * 1 (FIRST)
+                 */
             replace(/<example(?:\s+module="([^"]*)")?(?:\s+deps="([^"]*)")?(\s+animations="true")?>([\s\S]*?)<\/example>/gmi,
-                function(_, module, deps, animations, content) {
-
-                    var example = new Example(self.scenarios);
-                    if (animations) {
-                        example.enableAnimations();
-                        example.addDeps('angular-animate.js');
-                    }
-
-                    example.setModule(module);
-                    example.addDeps(deps);
-                    content.replace(/<file\s+name="([^"]*)"\s*>([\s\S]*?)<\/file>/gmi, function(_, name, content) {
-                        example.addSource(name, content);
-                    });
-                    content.replace(/<file\s+src="([^"]+)"(?:\s+tag="([^"]+)")?(?:\s+name="([^"]+)")?\s*\/?>/gmi, function(_, file, tag, name) {
-                        if (fs.existsSync(file)) {
-                            var content = fs.readFileSync(file, 'utf8');
-                            if (content && content.length > 0) {
-                                if (tag && tag.length > 0) {
-                                    content = extractInlineDocCode(content, tag);
-                                }
-                                name = name && name.length > 0 ? name : fspath.basename(file);
-                                example.addSource(name, content);
-                            }
+                    function(_, module, deps, animations, content) {
+                        console.log("Entering Doc.prototype.markdown 1º parts.replace(), with self.scenarios === ", self.scenarios);
+                        var example = new Example(self.scenarios);
+                        if (animations) {
+                            console.log("About to enter Example#enableAnimations()");
+                            example.enableAnimations();
+                            console.log("Exit Example#enableAnimations()");
+                            console.log("About to enter Example#addDeps(angular-animate.js)");
+                            example.addDeps('angular-animate.js');
+                            console.log("Exit Example#addDeps(angular-animate.js)");
                         }
-                        return '';
-                    })
+                        console.log("About to enter Example#setModule(", module, ")");
+                        example.setModule(module);
+                        console.log("Exit Example#setModule(", module, ")");
+                        console.log("About to enter Example#addDeps(", deps, ")");
+                        example.addDeps(deps);
+                        console.log("Exit Example#addDeps(", deps, ")");
+                        console.log("About to enter content.replace()");
+                        content.replace(/<file\s+name="([^"]*)"\s*>([\s\S]*?)<\/file>/gmi, function(_, name, content) {
+                            console.log("Entering content.replace with matches name === ", name, "AND content === ", content);
+                            console.log("Found <file name='...'>...</file> in source code, with name === ", name, " AND content === ", content);
+                            example.addSource(name, content);
+                            console.log("Exit Example#addSource(", name, ",", content, ")");
+                        });
+                        console.log("Exit content.replace");
+                        console.log("About to enter content.replace()");
+                        content.replace(/<file\s+src="([^"]+)"(?:\s+tag="([^"]+)")?(?:\s+name="([^"]+)")?\s*\/?>/gmi, function(_, file, tag, name) {
+                            console.log("Entering content.replace with matches file === ", file, " AND tag === ", tag, " AND name === ", name);
+                            console.log("Found <file src='...'></file> in source. Link points to ", fspath.resolve(file));
+                            if (fs.existsSync(file)) {
+                                var content = fs.readFileSync(file, 'utf8');
+                                console.log("Found link, with content === ", content.replace(/\n/g, "\\n").substr(0, 10));
+                                if (content && content.length > 0) {
+                                    if (tag && tag.length > 0) {
+                                        content = extractInlineDocCode(content, tag);
+                                    }
+                                    name = name && name.length > 0 ? name : fspath.basename(file);
+                                    example.addSource(name, content);
+                                }
+                            }
+                            return '';
+                        })
+                        console.log("Exit ngdoc.js 1º parts.replace(), right before example.toHtml()");
+                        console.log("Entering example.toHtml()");
+                        return placeholder(example.toHtml());
+                    }).
+                /**
+                 * 2 (SECOND)
+                 */
+            replace(/(?:\*\s+)?<file.+?src="([^"]+)"(?:\s+tag="([^"]+)")?\s*\/?>/i, function(_, file, tag) {
+                    console.log("Entering ngdoc.js 2º parts.replace, because found file <file src='...'></file>");
+                    !tag ? console.log("You did not specify a tag. I wonder if you specified a non-doc file") : null;
+                    if (fs.existsSync(file)) {
+                        var content = fs.readFileSync(file, 'utf8');
+                        if (tag && tag.length > 0) {
+                            console.log("About to extract inline doc code");
+                            content = extractInlineDocCode(content, tag);
+                            console.log("Extracted inline doc code, which was === ", content);
+                        }
+                        console.log("Content found in file was: ", content);
+                        return content;
+                    }
+                    console.log("Specified file was not found");
+                }).
+                /**
+                 * 3 (THIRD)
+                 */
+            replace(/^<doc:example(\s+[^>]*)?>([\s\S]*)<\/doc:example>/mi, function(_, attrs, content) {
+                    var html, script, scenario,
+                        example = new Example(self.scenarios);
+
+                    example.setModule((attrs || 'module=""').match(/^\s*module=["'](.*)["']\s*$/)[1]);
+                    content.
+                    replace(/<doc:source(\s+[^>]*)?>([\s\S]*)<\/doc:source>/mi, function(_, attrs, content) {
+                        example.addSource('index.html', content.replace(/<script>([\s\S]*)<\/script>/mi, function(_, script) {
+                            example.addSource('script.js', script);
+                            return '';
+                        }).replace(/<style>([\s\S]*)<\/style>/mi, function(_, style) {
+                            example.addSource('style.css', style);
+                            return '';
+                        }));
+                    }).
+                    replace(/(<doc:scenario>)([\s\S]*)(<\/doc:scenario>)/mi, function(_, before, content) {
+                        example.addSource('scenario.js', content);
+                    });
+
                     return placeholder(example.toHtml());
                 }).
-            replace(/(?:\*\s+)?<file.+?src="([^"]+)"(?:\s+tag="([^"]+)")?\s*\/?>/i, function(_, file, tag) {
-                if (fs.existsSync(file)) {
-                    var content = fs.readFileSync(file, 'utf8');
-                    if (tag && tag.length > 0) {
-                        content = extractInlineDocCode(content, tag);
-                    }
-                    return content;
-                }
-            }).
-            replace(/^<doc:example(\s+[^>]*)?>([\s\S]*)<\/doc:example>/mi, function(_, attrs, content) {
-                var html, script, scenario,
-                    example = new Example(self.scenarios);
-
-                example.setModule((attrs || 'module=""').match(/^\s*module=["'](.*)["']\s*$/)[1]);
-                content.
-                replace(/<doc:source(\s+[^>]*)?>([\s\S]*)<\/doc:source>/mi, function(_, attrs, content) {
-                    example.addSource('index.html', content.replace(/<script>([\s\S]*)<\/script>/mi, function(_, script) {
-                        example.addSource('script.js', script);
-                        return '';
-                    }).replace(/<style>([\s\S]*)<\/style>/mi, function(_, style) {
-                        example.addSource('style.css', style);
-                        return '';
-                    }));
-                }).
-                replace(/(<doc:scenario>)([\s\S]*)(<\/doc:scenario>)/mi, function(_, before, content) {
-                    example.addSource('scenario.js', content);
-                });
-
-                return placeholder(example.toHtml());
-            }).
+                /**
+                 * 4 (FOURTH)
+                 */
             replace(/^<pre(.*?)>([\s\S]*?)<\/pre>/mi, function(_, attrs, content) {
-                return placeholder(
-                    '<pre' + attrs + ' class="prettyprint linenums">' +
-                    content.replace(/</g, '&lt;').replace(/>/g, '&gt;') +
-                    '</pre>');
-            }).
+                    return placeholder(
+                        '<pre' + attrs + ' class="prettyprint linenums">' +
+                        content.replace(/</g, '&lt;').replace(/>/g, '&gt;') +
+                        '</pre>');
+                }).
+                /**
+                 * 5 (FIFTH)
+                 */
             replace(/<div([^>]*)><\/div>/, '<div$1>\n<\/div>').
+                /**
+                 * 6 (SIXTH)
+                 */
             replace(/{@link\s+([^\s}]+)\s*([^}]*?)\s*}/g, function(_all, url, title) {
-                var isFullUrl = url.match(IS_URL),
-                    isAngular = url.match(IS_ANGULAR),
-                    isHash = url.match(IS_HASH),
-                    absUrl = isHash ?
-                    url :
-                    (isFullUrl ? url : self.convertUrlToAbsolute(url));
+                    var isFullUrl = url.match(IS_URL),
+                        isAngular = url.match(IS_ANGULAR),
+                        isHash = url.match(IS_HASH),
+                        absUrl = isHash ?
+                        url :
+                        (isFullUrl ? url : self.convertUrlToAbsolute(url));
 
-                if (!isFullUrl) self.links.push(absUrl);
+                    if (!isFullUrl) self.links.push(absUrl);
 
-                return '<a href="' + absUrl + '">' +
-                    (isAngular ? '<code>' : '') +
-                    (title || url).replace(/^#/g, '').replace(/\n/g, ' ') +
-                    (isAngular ? '</code>' : '') +
-                    '</a>';
-            }).
+                    return '<a href="' + absUrl + '">' +
+                        (isAngular ? '<code>' : '') +
+                        (title || url).replace(/^#/g, '').replace(/\n/g, ' ') +
+                        (isAngular ? '</code>' : '') +
+                        '</a>';
+                }).
+                /**
+                 * 7 (SEVENTH)
+                 */
             replace(/{@type\s+(\S+)(?:\s+(\S+))?}/g, function(_, type, url) {
-                url = url || '#';
-                return '<a href="' + url + '" class="' + self.prepare_type_hint_class_name(type) + '">' + type + '</a>';
-            }).
+                    url = url || '#';
+                    return '<a href="' + url + '" class="' + self.prepare_type_hint_class_name(type) + '">' + type + '</a>';
+                }).
+                /**
+                 * 8 (EIGTH)
+                 */
             replace(/{@installModule\s+(\S+)?}/g, function(_, module) {
                 return explainModuleInstallation(module);
             });
@@ -890,7 +987,7 @@ Doc.prototype = {
 
         dom.h('Usage', function() {
             dom.code(function() {
-                if (self.constructor) {
+                if (typeof self["constructor"] === "boolean" && self["constructor"] === true) {
                     dom.text('new ');
                 }
                 dom.text(name.split(':').pop());
