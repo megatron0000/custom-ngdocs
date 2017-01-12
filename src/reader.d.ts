@@ -13,3 +13,5 @@ declare namespace reader {
     export let docs: Array<Doc>;
 
 }
+
+export = reader;

@@ -1,40 +1,3 @@
-/*
- * Adição minha
- */
-// Recolhe docs
-var vitorCustomDependencyHtml = function(requireArray, dom, self) {
-    dom.h('Dependencies', requireArray, function(require) {
-        dom.tag('code', function() {
-            var id, name;
-            if ((match = require.name.match(/^\[.+\](?={@link.+}$)/))) {
-                id = require.name.substring(require.name.indexOf('{@link ') + 7, require.name.length - 1);
-                name = match[0].replace(/[\[\]]/g, '');
-            } else if (require.name.match(/^{@link\s\w+\b.*}$/)) {
-                var splitName = require.name.replace('|', ' ').slice(0, -1).split(' ');
-                splitName.shift();
-                id = splitName.shift();
-                if (splitName.length > 0) {
-                    name = splitName.join(' ');
-                } else {
-                    name = id.split(/[\.:\/]/).pop();
-                }
-            } else {
-                id = require.name[0] == '$' ? 'ng.' + require.name : require.name
-                name = require.name.split(/[\.:\/]/).pop();
-            }
-            dom.tag('a', {
-                href: self.convertUrlToAbsolute(id)
-            }, name);
-        });
-        // Renderiza texto que eu tiver colocado para explicar este 
-        // require expecífico (como "@require ui.router Serve para blabla")
-        dom.html(require.text);
-        // Para dar espaço antes de próximos conteúdos
-        // (se próximo for texto, ficava tudo grudado)
-        dom.html("<br/><br/>");
-    }); ////
-}
-
 /**
  * All parsing/transformation code goes here. All code here should be sync to ease testing.
  */
@@ -1250,9 +1213,6 @@ Doc.prototype = {
                     // correspondendo a "method" (segundo argumento de dom.h())
                     dom.h(method.shortName + '(' + signature.join(', ') + ')', method,
                         function(objMethod) {
-
-                            // Insere um header com as dependências contidas no array method.requires
-                            vitorCustomDependencyHtml(objMethod.requires, dom, self);
 
                             dom.html(objMethod.description);
                             // Insere como se uma página inteira fosse

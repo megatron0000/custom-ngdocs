@@ -65,6 +65,13 @@
                     type: 'text/css'
                 });
 
+                // custom stylesheet (opensans font and scrollbar)
+                addTag('link', {
+                    rel: 'stylesheet',
+                    href: '../custom-resources/css/custom-font.css',
+                    type: 'text/css'
+                });
+
                 <% _.forEach(styles, function(url) { %>
                 addTag('link', {
                     rel: 'stylesheet',

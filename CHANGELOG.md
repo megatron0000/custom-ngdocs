@@ -1,3 +1,23 @@
+# 0.2.12 (2017-01-12)
+
+## Features
+
+### General
+
+* Uses custom-ngdocs and typedoc to generate documentation html about inner workings of the library (inside
+``docs`` folder, which has two subfolders: ``angular`` for presentation and ``node`` for backend)
+
+* Dependency graph about most angular types used for the "front-end"
+
+* Index template now references (link) a custom css which applies OpenSans font to body
+
+* Works with grunt 1.0.1
+
+### Bug fixes
+
+* Dependency graph, which was´t working because file used as source for page data changed from ``docs.json``
+to ``metadata.json``
+
 # 0.2.11 (2017-01-04)
 
 ## Features

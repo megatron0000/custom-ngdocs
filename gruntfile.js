@@ -68,7 +68,6 @@ module.exports = function(grunt) {
                 //scripts: ['angular.js', '../src.js'],
                 html5Mode: false,
                 dest: './docs/angular',
-                styles: ['src/custom-resources/css/custom-font.css', 'node_modules/custom-fonts/open-sans/OpenSans-Regular.ttf'],
                 startPage: "/",
                 title: 'Metadocs',
                 inlinePartials: false, //default
