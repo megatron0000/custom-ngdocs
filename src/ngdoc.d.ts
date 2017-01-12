@@ -89,7 +89,7 @@ declare namespace ngdoc {
          */
         scope: any;
         /**
-         * Set through "@priority 1000"
+         * Set through "@priority 0. "
          */
         priority: number;
     }
@@ -165,8 +165,11 @@ declare namespace ngdoc {
         param: Array<DocParam>;
         properties: Array<DocInlineProperty | DocBlockProperty>;
         methods: Array<DocInlineMethod | DocBlockMethod>;
-        // Real name is "constructor", but Typescript complained, so I put "_constructor"
-        // Is set if @constructor is detected in the source block comment
+        /**
+         * Real name is "constructor", but Typescript complained, so I put "_constructor"
+         *
+         * Is set if @constructor is detected in the source block comment
+         */
         _constructor?: boolean;
 
         events: Array<any>;
@@ -178,7 +181,7 @@ declare namespace ngdoc {
         links: Array<string>;
 
         /**
-         * Array of html "id" attributes and <a> element "name" attributes
+         * Array of html "id" attributes and < a > element "name" attributes
          * set during lifecycle of an instance of this class (example: an id is 
          * generated for every header inside utilized DOM class instance).
          * Array of ids is collected from DOM inside this.html()
@@ -221,12 +224,13 @@ declare namespace ngdoc {
         moduleName?: string;
 
         /**
-         * Palavras inúteis como preposições e artigos
+         * Useless words like prepositions and articles
          */
         static METADATA_IGNORE: Array<string>;
         /**
-         * Lê this.text e, de cada method/property, lê também (method/property).(text/description).
-         * Extrai todas as palavras que não estejam em this.METADATA_IGNORE e retorna Array delas (ordem alfabética)
+         * Reads this.text and, from each method/property, it also reads (method/property).(text/description).
+         * 
+         * Extracts all words that are not in this.METADATA_IGNORE and returns Array of them (alphabetical order)
          */
         keyword(): Array<string>;
         /**
@@ -248,10 +252,10 @@ declare namespace ngdoc {
          * Absolute url means url with section
          *
          * @example
-         * - if the link is inside any api doc:
+         * if the link is inside any api doc:
          * angular.widget -> api/angular.widget
          *
-         * - if the link is inside any guid doc:
+         * if the link is inside any guid doc:
          * intro -> guide/intro
          *
          * @param {string} url Absolute or relative url
@@ -278,19 +282,19 @@ declare namespace ngdoc {
          * Processess a block of documentation (/** @ngdoc blabla \n\n\n... * /)
          * That means it builds this.param , or this.returns... 
          * Workflow is as follows:
-         *  1: Process this.text to extract inline documented members
-         *   1.1 @param NOT instanceof Doc (even optional ones with default values. It nests object properties passed as parameter)
-         *   1.2 @return | @returns NOT instanceof Doc
-         *   1.3 @requires NOT instanceof Doc
-         *   1.4 @property ** instanceof Doc !!!
-         *   1.5 @eventType
-         *   1.6 @constructor
-         *   1.7 @unknown (that is, it does "this[unknown] = this.text". This behavior can be overriden to extend functionality)
+         *  1. Process this.text to extract inline documented members
+         *   1. @param NOT instanceof Doc (even optional ones with default values. It nests object properties passed as parameter)
+         *   2. @return | @returns NOT instanceof Doc
+         *   3. @requires NOT instanceof Doc
+         *   4. @property ** instanceof Doc !!!
+         *   5. @eventType
+         *   6. @constructor
+         *   7. @unknown (that is, it does "this[unknown] = this.text". This behavior can be overriden to extend functionality)
          *       Even though I call it "unknown", the "name" property (for example) is set here.
-         *  2: Set this.shortName (try to split this.name with "#", then with ":", then with ".", otherwise assign entire this.name)
-         *  3: Sets this.id (tries to use @id that was maybe collected in 1.7, then tries to use filename - if .ngdoc extension
+         *  2. Set this.shortName (try to split this.name with "#", then with ":", then with ".", otherwise assign entire this.name)
+         *  3. Sets this.id (tries to use @id that was maybe collected in 1.7.  then tries to use filename - if .ngdoc extension
          *     - then assigns this.name)
-         *  4: Sets remaining:
+         *  4. Sets remaining:
          *     - this.description
          *     - this.example
          *     - this.this
@@ -299,18 +303,18 @@ declare namespace ngdoc {
         /**
          * Builds entire html page corresponding to this Doc instance (making use of html_usage_ family of functions)
          * Workflow is as follows:
-         *  1: Use this.options.editLink to display "Improve this doc" (editLink must be implemented)
-         *  2: Use this.options.sourceLink to display "View source" (sourceLink must be implemented)
-         *  3: Calls dom.h() to generate the following:
-         *      3.1: Title of the page (with private helper function title())
-         *      3.2: Deprecation notice (optional. With private helper function notice())
-         *      3.3: Processing of "@ngdoc error" block comment (does not work for now)
-         *      3.4: Dependencies
-         *      3.5: Description
-         *      3.6: html_usage_ family of functions
-         *      3.7: Example
-         *  4: Assigns the array of anchors from Dom instance to Doc instance
-         *  5: Returns dom.toString(), effectively producing HTML
+         *  1. Use this.options.editLink to display "Improve this doc" (editLink must be implemented)
+         *  2. Use this.options.sourceLink to display "View source" (sourceLink must be implemented)
+         *  3. Calls dom.h() to generate the following:
+         *      1. Title of the page (with private helper function title())
+         *      2. Deprecation notice (optional. With private helper function notice())
+         *      3. Processing of "@ngdoc error" block comment (does not work for now)
+         *      4. Dependencies
+         *      5. Description
+         *      6. html_usage_ family of functions
+         *      7. Example
+         *  4. Assigns the array of anchors from Dom instance to Doc instance
+         *  5. Returns dom.toString(), effectively producing HTML
          */
         html(): void;
 
@@ -322,16 +326,16 @@ declare namespace ngdoc {
 
         /**
          * Workflow process is as follows:
-         *  1: Insert <ul> for this.animations (if not empty)
-         *  2: Insert <h2>Parameters</h2> and following <table> if this.param is not empty.
+         *  1. Insert < ul > for this.animations (if not empty)
+         *  2. Insert < h2 >Parameters< /h2 > and following < table > if this.param is not empty.
          *     To build the table, it calls helper processParams(), which does:
-         *      2.1: param.type is cloned and the clone is turned into Array (if block comment had "@type string|number etc.")
-         *      2.2: (optional) is put into html if param.optional === true. param.name is also put
-         *      2.3: clone of param.type is put into html, inside <a> attribute with correct links (if type is iternally defined)
-         *      2.4: param.description is put into html
-         *      2.5: param.default is put right below description (if default was set in block comment from source)
-         *      2.6: If param.properties is defined (see interface DomParam), subtable is created, processed and finished
-         *  3: Table is closed. Finished.
+         *      1. param.type is cloned and the clone is turned into Array (if block comment had "@type string|number etc.")
+         *      2. (optional) is put into html if param.optional === true. param.name is also put
+         *      3. clone of param.type is put into html, inside < a > attribute with correct links (if type is iternally defined)
+         *      4. param.description is put into html
+         *      5. param.default is put right below description (if default was set in block comment from source)
+         *      6. If param.properties is defined (see interface DomParam), subtable is created, processed and finished
+         *  3. Table is closed. Finished.
          */
         html_usage_parameters(): void;
 
@@ -358,20 +362,20 @@ declare namespace ngdoc {
 
         /**
          * Workflow:
-         *  1: Outputs "Usage" header
-         *  2: Inside <code>, puts signature (including "new" if "@constructor" was present). Uses aforementioned this.parameters()
-         *  3: html_usage_parameters()
-         *  4: html_usage_this()
-         *  5: html_usage_returns()
+         *  1. Outputs "Usage" header
+         *  2. Inside < code >, puts signature (including "new" if "@constructor" was present). Uses aforementioned this.parameters()
+         *  3. html_usage_parameters()
+         *  4. html_usage_this()
+         *  5. html_usage_returns()
          */
         html_usage_function(): void;
 
         /**
          * Like the name suggests, it WOULD be used for block comments of the type "@ngdoc property"
          * Workflow is:
-         *  1: "Usage" header
-         *  2: this.name is put below the header
-         *  3: this.html_usage_returns(), for documenting this.returns (although property should not have "@retuns")
+         *  1. "Usage" header
+         *  2. this.name is put below the header
+         *  3. this.html_usage_returns(), for documenting this.returns (although property should not have "@retuns")
          * 
          * BEWARE: Strange as it is, it is not called for "@ngdoc property". Instead, is used as helper
          * function for other type of ngdoc (namely, uniquely for html_usage_method)
@@ -385,7 +389,7 @@ declare namespace ngdoc {
 
         /**
          * Not called directly, only as helper to this.html_usage_directive()
-         * Builds a <ul> and puts the lines "This directive creates new scope." and 
+         * Builds a < ul > and puts the lines "This directive creates new scope." and 
          * "This directive executes at priority level ' + this.priority + '.'" inside it.
          * (Only if this.scope or this.priority is set - maybe both).
          */
@@ -393,27 +397,27 @@ declare namespace ngdoc {
 
         /**
          * Workflow is as follows:
-         *  1: <h>Usage</h>
-         *  2: If this.usage is set (only if "@usage blabla" was collected) outputs <code>this.usage</code>
-         *  3: Else (this.usage was not set), tries to use this.restrict to produce the same thing
+         *  1. < h >Usage< /h >
+         *  2. If this.usage is set (only if "@usage blabla" was collected) outputs < code >this.usage< /code >
+         *  3. Else (this.usage was not set), tries to use this.restrict to produce the same thing
          *      Uses renderParams() helper function to do this (it displays param signature)
-         *  4: html_usage_directiveInfo()
-         *  5: html_usage_parameters()
-         *  6: method_properties_events()
+         *  4. html_usage_directiveInfo()
+         *  5. html_usage_parameters()
+         *  6. method_properties_events()
          */
         html_usage_directive(): void;
 
         /**
          * Workflow is as follows:
-         *  1: <h>Usage</h>
-         *  2: <h>In HTML template Binding</h>
-         *  3: dom.text(this.usage) (if set)
-         *  4: if this.usage is not set, uses this.shortName. In both situations, calls this.parameters()
-         *  5: <h>In Javascript</h>
-         *  6: Uses this.shortName (calls this.parameters())
-         *  7: this.html_usage_parameters()
-         *  8: this.html_usage_this()
-         *  9: this.html_usage_returns()
+         *  1. < h >Usage< /h >
+         *  2. < h >In HTML template Binding< /h >
+         *  3. dom.text(this.usage) (if set)
+         *  4. if this.usage is not set, uses this.shortName. In both situations, calls this.parameters()
+         *  5. < h >In Javascript< /h >
+         *  6. Uses this.shortName (calls this.parameters())
+         *  7. this.html_usage_parameters()
+         *  8. this.html_usage_this()
+         *  9. this.html_usage_returns()
          */
         html_usage_filter(): void;
 
@@ -436,12 +440,12 @@ declare namespace ngdoc {
 
         /**
          * Workflow is as follows:
-         *  1: <h>Usage</h> whose content is set with this.name and this.parameters()
-         *  2: If this.param exists:
-         *      2.1: this.html_usage_parameters()
-         *      2.2: this.html_usage_this()
-         *      2.3: this.html_usage_returns()
-         *  3: this.method_properties_events()
+         *  1. < h >Usage< /h > whose content is set with this.name and this.parameters()
+         *  2. If this.param exists:
+         *      1. this.html_usage_parameters()
+         *      2. this.html_usage_this()
+         *      3. this.html_usage_returns()
+         *  3. this.method_properties_events()
          */
         html_usage_interface(): void;
 
@@ -456,19 +460,19 @@ declare namespace ngdoc {
 
         /**
          * Workflow is as follows:
-         *  1: If this.methods is not empty, puts a div with class "member method". Inside it:
-         *      1.1: <h>Methods</h>. Begins iteration over this.methods. For each one:
-         *      1.2: Set "View source" if this.options.sourceLink is set
-         *      1.3: Set a header containing method signature   (My custom code puts classes .public, .private, .deprecated in this header)
-         *      1.4: Inside header "callback", list Dependencies taken from this.requires (Dependencies is custom code)
-         *      1.5: Still inside, calls method.html_usage_parameters(), method.html_usage_this() and method.html_usage_returns()
-         *      1.6: Still inside, sets header "Example" whose content is set to be method.example
-         *  2: If this.properties is not empty, puts a div with class "member property". Inside it:
-         *      2.1: <h>Properties</h>. Begins iterarion over this.properties. For each one:
-         *      2.2: Sets header with property name (My custom code puts classes .public, .private, .deprecated in this header)
-         *      2.3: As a callback to the header, puts property type+description (table), then calls property.html_usage_returns(),
+         *  1. If this.methods is not empty, puts a div with class "member method". Inside it:
+         *      1. < h >Methods< /h >. Begins iteration over this.methods. For each one:
+         *      2. Set "View source" if this.options.sourceLink is set
+         *      3. Set a header containing method signature   (My custom code puts classes .public, .private, .deprecated in this header)
+         *      4. Inside header "callback", list Dependencies taken from this.requires (Dependencies is custom code)
+         *      5. Still inside, calls method.html_usage_parameters(), method.html_usage_this() and method.html_usage_returns()
+         *      6. Still inside, sets header "Example" whose content is set to be method.example
+         *  2. If this.properties is not empty, puts a div with class "member property". Inside it:
+         *      1. < h >Properties< /h >. Begins iterarion over this.properties. For each one:
+         *      2. Sets header with property name (My custom code puts classes .public, .private, .deprecated in this header)
+         *      3. As a callback to the header, puts property type+description (table), then calls property.html_usage_returns(),
          *            then sets header "Example" with content bound to this.example
-         *  3: If this.events is not empty, process it as well. I am not interested in this part...
+         *  3. If this.events is not empty, process it as well. I am not interested in this part...
          */
         method_properties_events(): void;
 
