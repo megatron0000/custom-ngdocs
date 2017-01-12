@@ -1,14 +1,13 @@
 {
     "dependencies": {
+        "fs-extra": "~1.0.0",
+        "grunt": "^1.0.1",
         "marked": "~0.3.2",
-        "shelljs": "~0.3.0",
-        "fs-extra": "~1.0.0"
+        "shelljs": "~0.3.0"
     },
     "description": "grunt plugin for angularjs documentation",
     "devDependencies": {
         "@types/node": "^6.0.55",
-        "grunt": "^0.4.5",
-        "grunt-contrib-watch": "~0.5.0",
         "grunt-conventional-changelog": "~0.1.0",
         "grunt-jasmine-node": "~0.1.0",
         "grunt-typedoc": "^0.2.4",
@@ -23,6 +22,6 @@
     "version": "0.2.11",
     "repository": {
         "type": "git",
-        "url": "https://github.com/megatron0000/custom-ngdocs.git"
+        "url": "git+https://github.com/megatron0000/custom-ngdocs.git"
     }
 }

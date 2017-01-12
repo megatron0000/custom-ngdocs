@@ -6,6 +6,13 @@ var docsApp = {
 
 
 /**
+ * @ngdoc directive
+ * @name docsApp.directive:ngHtmlWrapLoaded
+ * @restrict A
+ * @requires bootstrapPrettify.service:reindentCode
+ * @requires bootstrapPrettify.service:templateMerge
+ * @requires docsApp.service:loadedUrls
+ * @description
  * Works on "Source" part (tab-pane).
  * 
  * Receives an HtmlElement with some text inside (element.text()) and with attribute ng-html-wrap-loaded
@@ -13,9 +20,8 @@ var docsApp = {
  * 
  * It processes the name with no extension as a module name, and the rest as dependencies.
  * 
- * Then, returns the original element with " ng-app='moduleName' " and with <scripts> and <links>
+ * Then, returns the original element with " ng-app='moduleName' " and with < scripts > and < links >
  * referencing the processed dependencies.
- * 
  */
 docsApp.directive.ngHtmlWrapLoaded = function(reindentCode, templateMerge, loadedUrls) {
     function escape(text) {
@@ -263,13 +269,13 @@ docsApp.serviceFactory.formPostData = function($document) {
  * @requires bootstrapPrettify.service:templateMerge
  * @requires docsApp.service:formPostData
  * @requires docsApp.service:loadedUrls
- * @param {docsApp.type:PlunkerContent} content Specifies files to be opened in plunkr
+ * @param {docsApp.interface:PlunkerContent} content Specifies files to be opened in plunkr
  * @returns {void} Just calls {@link docsApp.service:formPostData formPostData}, which leads to effective POST
  */
 docsApp.serviceFactory.openPlunkr = function(templateMerge, formPostData, loadedUrls) {
     /**
-     * @ngdoc type
-     * @name docsApp.type:PlunkerContent
+     * @ngdoc interface
+     * @name docsApp.interface:PlunkerContent
      * @property {string} module Example: "assessmentAnalysis"
      * @property {string} deps Example: "dep1.js dep2.js dep3.css". ** Only .js and .css **
      * @property {string} html Example: "index.html homepage.html shop.html" ** First should be index.html **
@@ -337,10 +343,10 @@ docsApp.serviceFactory.sections = function serviceFactory() {
      * @public
      * @propertyOf docsApp.service:sections
      * @name docsApp.service:sections#sections
-     * @type {KeyValuePairs}
+     * @type KeyValuePairs
      * @description
      * HashMap whose keys are section names (like "api"). Each ``sections[key]`` is an Array
-     * of pages belonging to that section. These pages are complete ``Doc`` interfaces, supplemented
+     * of pages belonging to that section. These pages are complete ``Page`` interfaces, supplemented
      * with properties ``partialUrl`` (filename of the html generated for the page) and ``url`` (link that
      * the browser recognizes as belonging to that page)
      */
@@ -352,7 +358,7 @@ docsApp.serviceFactory.sections = function serviceFactory() {
          * @name docsApp.service:sections#getPage
          * @param {string} sectionId Name of the section (like "api")
          * @param {string} partialId Fully qualified name of an object (like "moduleName.controller:controllerName")
-         * @returns {Doc} Page requested, or **null** if not found
+         * @returns {Page} Page requested, or **null** if not found
          */
         getPage: function(sectionId, partialId) {
             var pages = sections[sectionId];
@@ -361,6 +367,19 @@ docsApp.serviceFactory.sections = function serviceFactory() {
 
             for (var i = 0, ii = pages.length; i < ii; i++) {
                 if (pages[i].id == partialId) {
+                    /**
+                     * @ngdoc interface
+                     * @name docsApp.interface:Page
+                     * @description
+                     * Contains resumed information about a page.
+                     * @property {string} section something like "api"
+                     * @property {string} id something like "moduleName.type:typeName"
+                     * @property {string} shortName Following above example, this would be "typeName"
+                     * @property {string} type Following above exaple, this would be "type"
+                     * @property {string} moduleName Following above example, this would be ``moduleName``
+                     * @property {string} shortDescription First words of the page's description
+                     * @property {string} keywords Well, keywords extracted previously from the page's information
+                     */
                     return pages[i];
                 }
             }
@@ -393,12 +412,13 @@ docsApp.serviceFactory.sections = function serviceFactory() {
  * @requires $window
  * @requires docsApp.service:sections
  * @description
- * ## TODO description
+ * Controls everything in documentation html: Pages to be loaded, search with bestMatch, 
+ * breadcrumbs
  */
 docsApp.controller.DocsController = function($scope, $location, $window, sections) {
     /**
      * @ngdoc interface
-     * @name docsApp.controller:UrlMatcher
+     * @name docsApp.interface:UrlMatcher
      * @description
      * Private variables from {@link docsApp.controller:DocsController DocsController}, used to detect
      * which angular object a certain page belongs to (controller, service, etc)
@@ -513,6 +533,15 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
      */
     $scope.afterPartialLoaded = function() {
         var currentPageId = $location.path();
+        /**
+         * @ngdoc property
+         * @public
+         * @propertyOf docsApp.controller:DocsController
+         * @name docsApp.controller:DocsController#$scope.partialTitle
+         * @type string
+         * @description
+         * Title of the document (dependent on the page being viewed)
+         */
         $scope.partialTitle = $scope.currentPage.shortName;
         $window._gaq && $window._gaq.push(['_trackPageview', currentPageId]);
         loadDisqus(currentPageId);
@@ -538,7 +567,21 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
         $scope.sections[(NG_DOCS.html5Mode ? '' : '#/') + url] = section;
     });
 
-
+    /**
+     * @ngdoc method
+     * @private
+     * @methodOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#docsPathWatchAction
+     * @param {string} path The new path being accessed
+     * @returns {void} Returns nothing
+     * @description
+     * **Watches** for changes in ``$location.path()``, triggering when it happens.
+     * 
+     * Its purpose is to
+     *  - Update {@link docsApp.controller:DocsController#scope.currentPage $scope.currentPage}
+     *  - Update {@link docsApp.controller:DocsController#$scope.breadcrumb $scope.breadcrumb}
+     *  - Update pages displayed on navigation column based on current search terms (from {@link docsApp.controller:DocsController#$scope.search})
+     */
     $scope.$watch(function docsPathWatch() {
         return $location.path();
     }, function docsPathWatchAction(path) {
@@ -556,16 +599,9 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
          * @public
          * @propertyOf docsApp.controller:DocsController
          * @name docsApp.controller:DocsController#$scope.currentPage
-         * @type KeyValuePairs
+         * @type docsApp.interface:Page
          * @description
-         * Contains resumed information about the page. Namely:
-         *  - ``section``: something like "api"
-         *  - ``id``: something like "moduleName.type:typeName"
-         *  - ``shortName``: Following above example, this would be "typeName"
-         *  - ``type``: Following above exaple, this would be "type"
-         *  - ``moduleName``: Following above example, this would be ``moduleName``
-         *  - ``shortDescription``: First words of the page's description
-         *  - ``keywords``: Well, keywords extracted previously from the page's information
+         * Describes page user is seeing
          */
         $scope.currentPage = page = sections.getPage(sectionId, partialId);
 
@@ -578,6 +614,36 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
 
 
         // Update breadcrumbs
+        /**
+         * @ngdoc property
+         * @public 
+         * @propertyOf docsApp.controller:DocsController
+         * @name docsApp.controller:DocsController#$scope.breadcrumb
+         * @type Array<KeyValuePairs>
+         * @description
+         * Describes a part of the documentation website. Maybe a section, maybe a module, maybe an object inside a module.
+         * 
+         * If it describes a section, will be an Array of objects with properties like:
+         * <pre>
+         *      {
+         *          name: "API documentation",
+         *          url: "#/api"
+         *      }
+         * </pre>
+         * 
+         * If it describes a module, will be like:
+         * <pre>
+         *      {
+         *          name: "docsApp"
+         *          url: "#/api/docsApp"
+         *      }
+         * </pre>
+         * 
+         * If it describes an object inside a module, the only structural
+         * diffence is that it will not have the "url" key, since we will 
+         * already be viewing the page it describes
+         * 
+         */
         var breadcrumb = $scope.breadcrumb = [],
             match, sectionPath = (NG_DOCS.html5Mode ? '' : '#/') + sectionId;
 
@@ -693,10 +759,49 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
      Initialize
      ***********************************/
 
+    /**
+     * @ngdoc property
+     * @public
+     * @propertyOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#$scope.versionNumber
+     * @type string
+     * @description
+     * Angular version being used
+     */
     $scope.versionNumber = angular.version.full;
+    /**
+     * @ngdoc property
+     * @public
+     * @propertyOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#$scope.version
+     * @type string
+     * @description
+     * Angular version being used
+     */
     $scope.version = angular.version.full + "  " + angular.version.codeName;
+    /**
+     * @ngdoc property
+     * @public
+     * @propertyOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#$scope.futurePartialTitle
+     * @type null
+     * @description
+     * Initialized with null value, and never used for anything since then
+     */
     $scope.futurePartialTitle = null;
-    $scope.loading = 0;
+    /**
+     * @ngdoc property
+     * @public
+     * @propertyOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#$scope.loading
+     * @type boolean
+     * @description
+     * Should be used to display "loading" message when a page change does not complete
+     * (that is, while user is waiting for new page to completely display).
+     * 
+     * However, the variable is just initialized as ``false`` and never again referenced.
+     */
+    $scope.loading = false;
 
     if (!$location.path() || INDEX_PATH.test($location.path())) {
         $location.path(NG_DOCS.startPage).replace();
@@ -706,11 +811,54 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
      Private methods
      ***********************************/
 
+    /**
+     * @ngdoc method
+     * @methodOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#updateSearch
+     * @private
+     * @returns {void} Returns nothing
+     * @description
+     * **Watches** changes to ``$scope.search`` (but is called programmatically in other
+     * situations as well).
+     * 
+     * Resets ``$scope.modules`` (controls which pages appear in navigation column),
+     * ``$scope.pages`` (pages from unseen sections) and ``$scope.bestMatch`` (for display under search bar)
+     */
     function updateSearch() {
         var cache = {},
             pages = sections[$location.path().split('/')[1]],
+            /**
+             * @ngdoc property
+             * @public
+             * @propertyOf docsApp.controller:DocsController
+             * @name docsApp.controller:DocsController#$scope.modules
+             * @type docsApp.interface:Array<Module>
+             * @description
+             * Collects all pages whose section was identified (in opposition to pages contained in
+             * {@link docsApp.controller:DocsController#$scope.pages $scope.pages}, whose section is not described
+             * in docs-setup.js )
+             */
             modules = $scope.modules = [],
+            /**
+             * @ngdoc property
+             * @public
+             * @propertyOf docsApp.controller:DocsController
+             * @name docsApp.controller:DocsController#$scope.pages
+             * @type Array
+             * @description
+             * Holds pages not contained in any known section (though I wouldn´t know 
+             * how this could happen...)
+             */
             otherPages = $scope.pages = [],
+            /**
+             * @ngdoc property
+             * @public
+             * @propertyOf docsApp.controller:DocsController
+             * @name docsApp.controller:DocsController#$scope.search
+             * @type string
+             * @description
+             * Holds current terms present in the search form´s < input > element
+             */
             search = $scope.search,
             bestMatch = {
                 page: null,
@@ -722,12 +870,16 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
                 id = page.id,
                 section = page.section;
 
+            // Find bestMatch page (by updating "bestMatch" variable at every iteration if necessary)
             if (!(match = rank(page, search))) return;
 
             if (match.rank > bestMatch.rank) {
                 bestMatch = match;
             }
 
+            /**
+             * Note there are 2 ways of defining a service
+             */
             if (page.id == 'index') {
                 //skip
             } else if (!NG_DOCS.apis[section]) {
@@ -779,10 +931,46 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
 
         });
 
+        /**
+         * @ngdoc property
+         * @propertyOf docsApp.controller:DocsController
+         * @name docsApp.controller:DocsController#$scope.bestMatch
+         * @public
+         * @type Object
+         * @description
+         * An object of the form:
+         * <pre>
+         *      {
+         *          page: {Page interface},
+         *          ranking: someNumber
+         *      }
+         * </pre>
+         * 
+         * It is used if user configured ``bestMatch: true`` in Gruntfile.
+         */
         $scope.bestMatch = bestMatch;
 
-        /*************/
 
+        /*************/
+        /**
+         * @ngdoc interface
+         * @name docsApp.interface:Module
+         * @description
+         * To understand the criteria that leads each page to its category (controller, or service etc),
+         * see {@link docsApp.interface:UrlMatcher UrlMatcher}
+         * @property {string} name Not fully qualified (something like "assessmentAnalysis")
+         * @property {string} url Something like "#/api/modulename"
+         * @property {docsApp.interface:Array<Page>} globals All pages describing global objects (like "angular.something")
+         * @property {docsApp.interface:Array<Page>} controllers All pages describing controllers
+         * @property {docsApp.interface:Array<Page>} directives All pages describing directives
+         * @property {docsApp.interface:Array<Page>} services All pages describing services and its providers
+         * @property {docsApp.interface:Array<Page>} constants All pages describing constants
+         * @property {docsApp.interface:Array<Page>} objects All pages describing objects
+         * @property {docsApp.interface:Array<Page>} interfaces All pages describing interfaces
+         * @property {docsApp.interface:Array<Page>} types All pages describing types
+         * @property {docsApp.interface:Array<Page>} filters All pages describing filters
+         * @property {docsApp.interface:Array<Page>} others All pages that did not fit any of the other categories
+         */
         function module(name, section) {
             var module = cache[name];
             if (!module) {
@@ -797,6 +985,13 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
                     objects: [],
                     interfaces: [],
                     others: [],
+                    /**
+                     * @ngdoc method
+                     * @methodOf docsApp.interface:Module
+                     * @name docsApp.interface:Module#service
+                     * @param {string} name Name of the service to be created
+                     * @returns {docsApp.interface:Page} The service that was just inserted in the Module
+                     */
                     service: function(name) {
                         var service = cache[this.name + ':' + name];
                         if (!service) {
@@ -842,7 +1037,16 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
         }
     }
 
-
+    /**
+     * @ngdoc method
+     * @private
+     * @methodOf docsApp.controller:DocsController
+     * @name docsApp.controller:DocsController#loadDisqus
+     * @param {string} currentPageId Fully qualified name ("#/api/modulename.object:objectname")
+     * @returns {void} Returns nothing
+     * @description
+     * Inserts discussion in html being presented to user (using **disqus**)
+     */
     function loadDisqus(currentPageId) {
         if (!NG_DOCS.discussions) {
             return;

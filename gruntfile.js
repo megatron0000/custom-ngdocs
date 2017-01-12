@@ -1,7 +1,6 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-    grunt.loadNpmTasks('grunt-typedoc');
 
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-conventional-changelog');
@@ -13,7 +12,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
         typedoc: {
             build: {
                 options: {
