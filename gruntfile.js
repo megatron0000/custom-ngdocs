@@ -35,7 +35,7 @@ module.exports = function(grunt) {
         },
         watch: {
             forNgDocs: {
-                files: ['src/**/*.js'],
+                files: ['src/**'],
                 tasks: ['clean', 'ngdocs']
             },
             forTests: {

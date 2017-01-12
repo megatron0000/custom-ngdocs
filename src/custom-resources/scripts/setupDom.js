@@ -20,12 +20,13 @@ function setupDom(docs) {
         },
         layout: {
             hierarchical: {
-                enabled: true,
+                enabled: false,
                 direction: "LR",
                 sortMethod: "directed",
                 levelSeparation: 200
             },
-            improvedLayout: true
+            improvedLayout: true,
+            randomSeed: 350456
         },
         nodes: {
             shape: "box",
@@ -40,6 +41,12 @@ function setupDom(docs) {
             },
             type: {
                 color: "rgb(242,107,245)"
+            },
+            interface: {
+                color: "#abef23"
+            },
+            directive: {
+                color: "#7083c1"
             },
             unknown: {
                 //Nada
@@ -65,7 +72,7 @@ function setupDom(docs) {
         options: options
     };
 
-	/*
+    /*
     network.clustering.cluster({
         joinCondition: (nodeOptions) => {
             return nodeOptions.group === "controller";

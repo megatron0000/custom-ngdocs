@@ -1,89 +1,104 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="dependencyGraphApp">
-    <head>
-        <meta charset="utf-8"/>
-        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-        <meta content="width=device-width,initial-scale=1" name="viewport"/>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.css" rel="stylesheet" type="text/css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.js" type="text/javascript">
-        </script>
-        <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
-        <style type="text/css">
-            #mynetwork {
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.js" type="text/javascript">
+    </script>
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #mynetwork {
             /*Se eu colocar 80%, o div#buttons fica para baixo*/
             width: 79%;
-            height: 700px;
+            height: 600px;
             border: 1px solid lightgray;
-            float:right;
+            float: right;
         }
+        
         #title {
             font-family: 'FontAwesome';
-            margin:-5px !important;
+            margin: -5px !important;
             padding-left: 20px;
             padding-top: 40px;
             height: 100px;
             background-color: #ced8e8;
         }
+        
         body {
             background-color: #e1f0f2;
         }
+        
         #buttons {
             width: 20%;
             float: left;
         }
-        </style>
-        <title>
-            Dependency Graph
-        </title>
-    </head>
-    <body ng-controller="GraphBuilderController">
-        <!-- <h2 id="title">
+        
+        .button {
+            display: block;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+    <title>
+        Dependency Graph
+    </title>
+</head>
+
+<body ng-controller="GraphBuilderController">
+    <!-- <h2 id="title">
             Grafo de dependências entre controllers e services
         </h2> -->
-        <div id="mynetwork">
-        </div>
-        <br/>
-        <div id="buttons">
-            <button ng-click="switchVisibility('type')" style="border-radius: 10px; padding: 10px; background-color: rgb(242,107,245);">
-                Mostrar Types
-            </button>
-            <br/>
-            <button ng-click="switchVisibility('controller')" style="border-radius: 10px; padding: 10px; background-color: #2fe05e;">
-                Mostrar Controllers
-            </button>
-            <br/>
-            <button ng-click="switchVisibility('service')" style="border-radius: 10px; padding: 10px; background-color: #f74a67;">
-                Mostrar Services
-            </button>
-            <button ng-click="switchVisibility('unknown')" style="border-radius: 10px; padding: 10px; background-color: #848484;">
-                Mostrar Desconhecidos
-            </button>
-            <button ng-click="setIsHierarchical()" style="border-radius: 10px; padding: 10px; background-color: white;">
-                Layout hierárquico ?
-            </button>
-        </div>
-        <!-- angular -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js">
-        </script>
-        <script src="scripts/buildGraph.js" type="text/javascript">
-        </script>
-        <script src="scripts/setupDom.js" type="text/javascript">
-        </script>
-        <script type="text/javascript">
-            // Definição do tipo Graph
-            //{
-            //  .nodes [{
-            //      .id
-            //      .name
-            //      .label
-            //      .group=
-            //  }]
-            //  .edges [{
-            //      .from
-            //      .to
-            //  }]
-            //}
-            angular.module("dependencyGraphApp", [])
+    <div id="mynetwork">
+    </div>
+    <br/>
+    <div id="buttons">
+        <button ng-click="switchVisibility('type')" class="button" style="background-color: rgb(242,107,245);">
+                Show Types
+        </button>
+        <button ng-click="switchVisibility('controller')" class="button" style="background-color: #2fe05e;">
+                Show Controllers
+        </button>
+        <button ng-click="switchVisibility('service')" class="button" style="background-color: #f74a67;">
+                Show Services
+        </button>
+        <button ng-click="switchVisibility('interface')" class="button" style="background-color: #abef23;">
+                Show Interfaces
+        </button>
+        <button ng-click="switchVisibility('directive')" class="button" style="background-color: #7083c1;">
+                Show Directives
+        </button>
+        <button ng-click="switchVisibility('unknown')" class="button" style="background-color: rgb(151, 194, 252);">
+                Show unknowns
+        </button>
+        <button ng-click="setIsHierarchical()" class="button" style="background-color: white;">
+                Hierarchical display ?
+        </button>
+    </div>
+    <!-- angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js">
+    </script>
+    <script src="scripts/buildGraph.js" type="text/javascript">
+    </script>
+    <script src="scripts/setupDom.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        // Definição do tipo Graph
+        //{
+        //  .nodes [{
+        //      .id
+        //      .name
+        //      .label
+        //      .group=
+        //  }]
+        //  .edges [{
+        //      .from
+        //      .to
+        //  }]
+        //}
+        angular.module("dependencyGraphApp", [])
             //
             .controller("GraphBuilderController", ["$scope", "$http", "GraphHolder",
                 function($scope, $http, GraphHolder) {
@@ -95,10 +110,12 @@
 
                     console.log("Inside controller");
                     // Criar o grafo e cedê-lo a GraphHolder
-                    $http.get("data/docs.json").then(
-                        (response) => {return response.data;}, onError)
-                    .then(setupDom, onError)
-                    .then(GraphHolder.setup, onError);
+                    $http.get("data/metadata.json").then(
+                            (response) => {
+                                return response.data;
+                            }, onError)
+                        .then(setupDom, onError)
+                        .then(GraphHolder.setup, onError);
 
                     $scope.switchVisibility = (groupName) => {
                         GraphHolder.switchVisibility(groupName);
@@ -128,10 +145,10 @@
                         this.visObj = new vis.Network(this.container, {
                             nodes: new vis.DataSet(this.data.nodes),
                             edges: new vis.DataSet(this.data.edges)
-                        }
-                        , this.options);
+                        }, this.options);
+                        console.log("Current seed", this.visObj.getSeed());
                     }
-                    
+
                     this.setup = (components) => {
                         this.container = components.container;
                         this.data = components.data;
@@ -139,17 +156,23 @@
                         this.visObj = new vis.Network(components.container, {
                             nodes: new vis.DataSet(this.data.nodes),
                             edges: new vis.DataSet(this.data.edges)
-                        }
-                        , components.options);
+                        }, components.options);
+                        console.log("Current seed", this.visObj.getSeed());
                     };
 
                     this.switchVisibility = (groupName) => {
                         this.options.groups[groupName].hidden = !this.options.groups[groupName].hidden;
                         // CUIDADO !! this.data.edges é do tipo vis.DataSet
                         // (observe o return de setupDom)
-                        forEach(this.data.edges, {group: groupName}, (elem) => {
-                            let fromGroupName = find(this.data.nodes, {id: elem.from}).group;
-                            let toGroupName = find(this.data.nodes, {id: elem.to}).group;
+                        forEach(this.data.edges, {
+                            group: groupName
+                        }, (elem) => {
+                            let fromGroupName = find(this.data.nodes, {
+                                id: elem.from
+                            }).group;
+                            let toGroupName = find(this.data.nodes, {
+                                id: elem.to
+                            }).group;
                             if (!this.options.groups[fromGroupName].hidden && !this.options.groups[toGroupName].hidden)
                                 elem.hidden = false;
                             else
@@ -161,7 +184,7 @@
                     function forEach(array, filter, callback) {
                         let filteredArray = [];
                         // Filtrar o array
-                        for (let i = 0 ; i < array.length; i ++) {
+                        for (let i = 0; i < array.length; i++) {
                             let elem = array[i];
                             let passed = true;
                             for (key in filter) {
@@ -171,7 +194,7 @@
                                     passed = new RegExp(filter[key]).test(elem[key]);
                                 else
                                     passed = filter[key] === elem[key];
-                                if(!passed)
+                                if (!passed)
                                     break;
                             }
                             if (passed)
@@ -182,8 +205,8 @@
                         });
                     }
 
-                    function find (array, filter) {
-                        for (let i = 0 ; i < array.length ; i ++) {
+                    function find(array, filter) {
+                        for (let i = 0; i < array.length; i++) {
                             let elem = array[i];
                             let passed = true;
                             for (key in filter) {
@@ -200,6 +223,7 @@
                     }
                 }
             ]);
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>

@@ -416,7 +416,7 @@ service.reindentCode = function() {
 /**
  * @ngdoc service
  * @name bootstrapPrettify.service:templateMerge
- * @requires {@link bootstrapPrettify.service:reindentCode}
+ * @requires bootstrapPrettify.service:reindentCode
  * @description
  * Interpolates expressions in a template string (template can also specify indentation of the interpolation)
  * @param {string} template Template like "{{name:4}}", which will be substituted by the value of the key ``name`` from ``properties``

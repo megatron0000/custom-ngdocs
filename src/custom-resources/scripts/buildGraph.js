@@ -17,11 +17,11 @@ function buildGraph(docs) {
     const nodeList = [];
     const edgeList = [];
     let id = 0;
-    // Remover todas as entradas que não sejam controllers ou services ou types
+    // Remover todas as entradas que não sejam dos tipos que se pretende registrar
     let newDocs = [];
     docs.forEach(
         (elem, index, array) => {
-            if (/controller|service|type/.test(elem.ngdoc))
+            if (/controller|service|type|interface|directive/.test(elem.ngdoc))
                 newDocs.push(elem);
         }
     );
@@ -34,7 +34,7 @@ function buildGraph(docs) {
             let name = elem.name;
             let label = elem.shortName;
             let group = elem.ngdoc;
-            let title = name.split(".")[0]  // Module ao qual pertence
+            let title = name.split(".")[0] // Module ao qual pertence
             nameList.push(name);
             nodeList.push({
                 id: ++id,
